@@ -1,7 +1,10 @@
 ﻿@page
 @model IndexModel
+@inject GameStoreContext dbContext
 @{
     ViewData["Title"] = "Home page";
+    //Layout = null;
+    var gl = dbContext.Game.ToList();
 }
 
 <div class="text-center">

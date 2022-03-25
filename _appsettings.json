@@ -7,7 +7,7 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "GameStoreContext": "server=localhost;user=root;database=gamestore"
+    "GameStoreContext": "connection string"
   },
-  "MariaVersion": "10.4.22-mariadb"
+  "MariaVersion": "maria db version"
 }

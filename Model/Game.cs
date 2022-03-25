@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace razor_ef_2022.Model;
 
@@ -9,7 +10,12 @@ public class Game
 
     public string? Title { get; set; }
 
+    //[Display(Name = "Jose")]
+    [Column(TypeName = "decimal(6,2)")]
+
     public decimal Price { get; set; } = 5.99M;
+
+    [Display(Name = "Date Published")]
 
     [DataType(DataType.Date)]
 

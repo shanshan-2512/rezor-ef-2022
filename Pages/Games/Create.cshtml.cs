@@ -14,13 +14,17 @@ namespace razor_ef_2022.Pages.Games
     {
         private readonly GameStoreContext _context;
 
-        public CreateModel(GameStoreContext context)
+        private readonly ILogger _logger;
+
+        public CreateModel(ILogger<CreateModel> logger, GameStoreContext context)
         {
+            _logger = logger;
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            _logger.Log(LogLevel.Information, "got create page");
             return Page();
         }
 

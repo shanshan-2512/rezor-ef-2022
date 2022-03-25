@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace razor_ef_2022.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    [Migration("20220324182048_initMariadb")]
-    partial class initMariadb
+    [Migration("20220325163833_Pricerefines")]
+    partial class Pricerefines
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace razor_ef_2022.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext");

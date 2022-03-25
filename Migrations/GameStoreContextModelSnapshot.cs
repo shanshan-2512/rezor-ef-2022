@@ -31,7 +31,7 @@ namespace razor_ef_2022.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext");

@@ -1,4 +1,4 @@
-@page
+@page "{id}"
 @model razor_ef_2022.Pages.Games.DetailsModel
 
 @{
@@ -6,6 +6,17 @@
 }
 
 <h1>Details</h1>
+<div>@Model.TheDate</div>
+<div>@Model.Qname</div>
+
+<div>@Html.Raw(Model.QueryValues)</div>
+
+<ul>
+    @foreach (var routeVal in Request.RouteValues)
+    {
+        <li><span>@routeVal.Key</span>:<span>@routeVal.Value</span></li>
+    }
+</ul>
 
 <div>
     <h4>Game</h4>
