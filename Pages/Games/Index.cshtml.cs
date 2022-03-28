@@ -17,6 +17,19 @@ public class IndexModel : PageModel
     [BindProperty(SupportsGet = true, Name = "Query")]
     public string Query { get; set; }
 
+    [BindProperty(SupportsGet = true, Name = "ReleaseTime")]
+    public string ReleaseTime { get; set; }
+
+    [BindProperty(SupportsGet = true, Name = "Before")]
+    public bool Before { get; set; }
+
+    [BindProperty(SupportsGet = true, Name = "After")]
+    public bool After { get; set; }
+
+    [BindProperty(SupportsGet = true, Name = "FilterByDate")]
+    public bool FilterByDate { get; set; }
+
+
     public IndexModel(GameStoreContext context, ILogger<IndexModel> logger)
     {
         _logger = logger;
@@ -30,12 +43,31 @@ public class IndexModel : PageModel
 
         var games = from g in _context.Game select g;
 
-        if (!string.IsNullOrEmpty(Query))
+        if (!string.IsNullOrEmpty(Query) && !string.IsNullOrEmpty(ReleaseTime))
         {
-            games = games.Where(g => g.Title.Contains(Query));
+            if (Before && !FilterByDate)
+            {
+                games = games.Where(g => g.Title.ToLower().Contains(Query.ToLower()) &&
+                                        g.DatePublished <= DateTime.Parse(ReleaseTime));
+                // _logger.Log(LogLevel.Information, ReleaseTime);
+                // _logger.Log(LogLevel.Information, Query);
+            }
+
+            else if (After && !FilterByDate)
+            {
+                games = games.Where(g => g.Title.ToLower().Contains(Query.ToLower()) &&
+                                        g.DatePublished >= DateTime.Parse(ReleaseTime));
+                // _logger.Log(LogLevel.Information, ReleaseTime);
+                // _logger.Log(LogLevel.Information, Query);
+            }
+
+            else if (FilterByDate)
+            {
+                games = games.Where(g => g.Title.ToLower().Contains(Query.ToLower()));
+            }
         }
 
-        _logger.Log(LogLevel.Information, Query);
+        //_logger.Log(LogLevel.Information, Query);
         Games = await games.ToListAsync();
     }
 }

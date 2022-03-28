@@ -14,6 +14,13 @@
     <p>
         Filter Titles:
         <input type="text" asp-for="Query" />
+
+    </p>
+    <p>Filter Date
+        <input type="date" asp-for="ReleaseTime" />
+        <input type="checkbox" asp-for="Before" /> before
+        <input type="checkbox" asp-for="After" /> after
+        <input type="checkbox" asp-for="FilterByDate" />turn off
         <input type="submit" value="Filter" />
     </p>
 </form>
